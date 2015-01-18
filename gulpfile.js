@@ -14,6 +14,9 @@ var vv = require('drainpipe'),
 
 
 var scripts = [
+  'bower_components/ace-builds/src/ace.js',
+  'bower_components/ace-builds/src/mode-javascript.js',
+  'bower_components/ace-builds/src/theme-monokai.js',
   'bower_components/gibberish-dsp/build/gibberish.js',
   'bower_components/sig-js/sig.js',
   'bower_components/drainpipe/drainpipe.js',
@@ -32,7 +35,8 @@ task('build', ['clean', 'markup', 'styles', 'scripts'])
 
 
 task('watch', function() {
-  watch('src/scripts/**/*.js', ['scripts', 'test'])
+  watch(cat(scripts, 'tests/**/*.test.js'), ['scripts', 'test'])
+  watch('src/markup/**/*.html', ['markup'])
   watch('src/styles/**/*.less', ['styles'])
 })
 
@@ -44,7 +48,6 @@ task('clean', function(done) {
 
 task('scripts', function() {
   return vv(scripts)
-    (cat)
     (src)
     (pipe, concat('permutation.js'))
     (pipe, uglify())
@@ -73,10 +76,9 @@ task('markup', function() {
 
 
 task('test', function() {
-  return vv([
+  return vv(cat(
       scripts,
-      ['tests/**/*.test.js']])
-    (cat)
+      ['tests/**/*.test.js']))
     (src)
     (pipe, karma({
       action: 'run',
@@ -99,6 +101,6 @@ function onError(e) {
 }
 
 
-function cat(arrays) {
-  return Array.prototype.concat.apply([], arrays)
+function cat() {
+  return Array.prototype.concat.apply([], arguments)
 }

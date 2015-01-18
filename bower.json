@@ -1,6 +1,8 @@
 {
   "name": "permutation",
-  "authors": ["justinvdm <justinvdm.0.1.0@gmail.com>"],
+  "authors": [
+    "justinvdm <justinvdm.0.1.0@gmail.com>"
+  ],
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -9,6 +11,7 @@
     "sig-js": "~0.1.1",
     "motif-js": "~0.1.1",
     "drainpipe": "~0.1.0",
-    "museq": "~0.1.2"
+    "museq": "~0.1.2",
+    "ace-builds": "~1.1.8"
   }
 }
