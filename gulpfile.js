@@ -13,31 +13,36 @@ var vv = require('drainpipe'),
     dest = gulp.dest.bind(gulp)
 
 
-var scripts = [
-  'bower_components/ace-builds/src/ace.js',
-  'bower_components/ace-builds/src/mode-javascript.js',
-  'bower_components/ace-builds/src/theme-monokai.js',
-  'bower_components/gibberish-dsp/build/gibberish.js',
-  'bower_components/sig-js/sig.js',
-  'bower_components/drainpipe/drainpipe.js',
-  'bower_components/wires/wires.js',
-  'bower_components/museq/museq.js',
-  'bower_components/motif-js/motif.js',
-  'bower_components/warped/warped.js',
-  'src/scripts/index.js'
-]
+var scripts = {
+  vendor: [
+    'bower_components/ace-builds/src/ace.js',
+    'bower_components/ace-builds/src/mode-javascript.js',
+    'bower_components/ace-builds/src/theme-monokai.js',
+    'bower_components/gibberish-dsp/build/gibberish.js',
+    'bower_components/sig-js/sig.js',
+    'bower_components/drainpipe/drainpipe.js',
+    'bower_components/wires/wires.js',
+    'bower_components/museq/museq.js',
+    'bower_components/motif-js/motif.js',
+    'bower_components/warped/warped.js'
+  ],
+  src: [
+    'src/scripts/index.js'
+  ]
+}
 
 
 task('default', ['build', 'test'])
-
-
 task('build', ['clean', 'markup', 'styles', 'scripts'])
+task('scripts', ['scripts:vendor', 'scripts:src'])
 
 
 task('watch', function() {
-  watch(cat(scripts, 'tests/**/*.test.js'), ['scripts', 'test'])
+  watch(scripts.vendor, ['scripts:vendor', 'test'])
+  watch(scripts.src, ['scripts:src', 'test'])
   watch('src/markup/**/*.html', ['markup'])
   watch('src/styles/**/*.less', ['styles'])
+  watch('tests/**/*.test.js', ['test'])
 })
 
 
@@ -46,8 +51,8 @@ task('clean', function(done) {
 })
 
 
-task('scripts', function() {
-  return vv(scripts)
+task('scripts:src', function() {
+  return vv(scripts.src)
     (src)
     (pipe, concat('permutation.js'))
     (pipe, uglify())
@@ -55,6 +60,18 @@ task('scripts', function() {
     (pipe, dest('build/static'))
     ()
 })
+
+
+task('scripts:vendor', function() {
+  return vv(scripts.vendor)
+    (src)
+    (pipe, concat('permutation-vendor.js'))
+    (pipe, uglify())
+    (pipe, rename('permutation-vendor.min.js'))
+    (pipe, dest('build/static'))
+    ()
+})
+
 
 task('styles', function() {
   return vv('src/styles/permutation.less')
@@ -77,7 +94,8 @@ task('markup', function() {
 
 task('test', function() {
   return vv(cat(
-      scripts,
+      scripts.vendor,
+      scripts.src,
       ['tests/**/*.test.js']))
     (src)
     (pipe, karma({
