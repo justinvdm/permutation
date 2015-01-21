@@ -101,7 +101,7 @@ task('test', function() {
     (pipe, karma({
       action: 'run',
       reporters: ['mocha'],
-      browsers: ['PhantomJS'],
+      browsers: ['Chrome'],
       frameworks: ['mocha', 'chai']
     }))
     ()
