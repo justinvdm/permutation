@@ -21,7 +21,7 @@ var scripts = {
     'bower_components/gibberish-dsp/build/gibberish.js',
     'bower_components/sig-js/sig.js',
     'bower_components/drainpipe/drainpipe.js',
-    'bower_components/wires/wires.js',
+    'bower_components/wires-js/wires.js',
     'bower_components/museq/museq.js',
     'bower_components/motif-js/motif.js',
     'bower_components/warped/warped.js'
