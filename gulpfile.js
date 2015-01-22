@@ -27,7 +27,17 @@ var scripts = {
     'bower_components/warped/warped.js'
   ],
   src: [
-    'src/scripts/index.js'
+    'src/scripts/index.js',
+    'src/scripts/edit.js',
+    'src/scripts/run.js',
+    'src/scripts/clear.js',
+    'src/scripts/inject.js',
+    'src/scripts/keys.js',
+    'src/scripts/showResult.js',
+    'src/scripts/showError.js',
+  ],
+  init: [
+    'src/scripts/init.js'
   ]
 }
 
@@ -53,6 +63,7 @@ task('clean', function(done) {
 
 task('scripts:src', function() {
   return vv(scripts.src)
+    (cat, scripts.init)
     (src)
     (pipe, concat('permutation.js'))
     (pipe, uglify())
