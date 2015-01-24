@@ -5,6 +5,7 @@ var vv = require('drainpipe'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     cssmin = require('gulp-cssmin'),
+    pathJoin = require('path').join,
     del = require('del'),
     gulp = require('gulp'),
     watch = gulp.watch.bind(gulp),
@@ -117,6 +118,10 @@ task('test', function() {
     }))
     ()
 })
+
+
+process.env.CHROME_BIN = pathJoin(
+  __dirname, 'node_modules/.bin/run-headless-chromium')
 
 
 function pipe(s, t) {
