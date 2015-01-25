@@ -8,9 +8,13 @@ permutation.init = function() {
       update = sig.update,
       flatten = sig.flatten,
       map = sig.map,
+      put = sig.put,
       out = wires.out,
-      seq = museq.seq
+      seq = museq.seq,
+      interval = museq.interval
 
+
+  window.result = result
 
   window.samples = {
     c: sampler('/static/c.wav'),
@@ -35,6 +39,13 @@ permutation.init = function() {
     extend(window, g)
   })
 
+  put(interval, 1200)
+
+
+  function result(s) {
+    return map(s, deepMap, run)
+  }
+
 
   function sequencer() {
     var s = val()
@@ -42,7 +53,6 @@ permutation.init = function() {
     vv(s)
       (ensure)
       (update)
-      (map, deepMap, run)
       (seq)
       (flatten)
       (map, out)

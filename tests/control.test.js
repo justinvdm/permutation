@@ -1,6 +1,7 @@
 describe("control", function() {
   var control = p.control,
       origInit = p.init,
+      origIntro = p.intro,
       origKeypress = p.keypress
 
 
@@ -30,17 +31,16 @@ describe("control", function() {
   }
 
 
-  function noop() {}
-
-
   beforeEach(function() {
     p.keypress = keypress
-    p.init = noop
+    p.init = function() {}
+    p.intro = function() { return '' }
     el = makeEl()
   })
 
   afterEach(function() {
     p.init = origInit
+    p.intro = origIntro
     p.keypress = origKeypress
     document.body.removeChild(el)
   })
@@ -48,6 +48,22 @@ describe("control", function() {
   it("should initialise permutation", function(done) {
     p.init = function() { done() }
     control()
+  })
+
+  it("should add the intro code to the editor", function() {
+    p.intro = function() { return '1 + 2' }
+    var c = control()
+    c.editor.getValue().should.equal('1 + 2')
+  })
+
+  it("should run the intro code", function() {
+    p.intro = function() { return '1 + 2' }
+    var c = control()
+
+    c.logger.getValue().should.equal([
+        '1 + 2',
+        ''
+    ].join('\n'))
   })
 
   it("should run the editor when ctrl-alt-enter is pressed", function() {

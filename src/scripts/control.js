@@ -24,6 +24,10 @@ permutation.control = function() {
 
   p.init()
 
+  editor.setValue(p.intro())
+  editor.clearSelection()
+  run()
+
 
   function run() {
     return p.runEditor(editor, evaluate, logInput, logResult, logError)
