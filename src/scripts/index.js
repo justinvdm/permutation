@@ -1,3 +1,6 @@
 window.permutation = function() {
-  return {global: window}
+  return {
+    global: window,
+    keypress: keymage
+  }
 }()

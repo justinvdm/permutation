@@ -4,6 +4,7 @@ describe("editor", function() {
       runEditor = p.runEditor,
       clearEditor = p.clearEditor
 
+
   var el
 
   function noop() {}

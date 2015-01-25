@@ -1,14 +1,86 @@
 describe("control", function() {
-  var extend = p.extend,
-      control = p.control
+  var control = p.control,
+      origKeypress = p.keypress
 
-  it("should run the editor with dependencies added to the context")
 
-  it("should run the editor when ctrl-enter is pressed")
+  var el
+  var listeners = {}
 
-  it("should clear the editor when ctrl-backspace is pressed")
+  function keypress(keys, fn) {
+    if (arguments.length < 2) return listeners[keys]()
+    listeners[keys] = fn
+  }
 
-  it("should run and clear the editor when ctrl-shift-enter is pressed")
+  function makeEl() {
+    var el = document.createElement('div')
+    document.body.appendChild(el)
 
-  it("should log input when the editor is run")
+    var editor = document.createElement('div')
+    editor.id = 'editor'
+    el.appendChild(editor)
+
+    var logger = document.createElement('div')
+    logger.id = 'logger'
+    el.appendChild(logger)
+
+    return el
+  }
+
+  beforeEach(function() {
+    p.keypress = keypress
+    el = makeEl()
+  })
+
+  afterEach(function() {
+    p.keypress = origKeypress
+    document.body.removeChild(el)
+  })
+
+  it("should run the editor when ctrl-alt-enter is pressed", function() {
+    var c = control()
+    c.editor.setValue('1 + 2')
+
+    c.logger.getValue().should.equal('')
+    keypress('ctrl-alt-enter')
+    c.logger.getValue().should.equal([
+        '1 + 2',
+        '/*',
+        '3',
+        '*/',
+        ''
+    ].join('\n'))
+
+    c.editor.getValue().should.equal('1 + 2')
+  })
+
+  it("should clear the editor when ctrl-shift-backspace is pressed", function() {
+    var c = control()
+    c.editor.setValue('2+2')
+    keypress('ctrl-shift-backspace')
+    c.editor.getValue().should.equal('')
+  })
+
+  it("should clear the editor when ctrl-alt-backspace is pressed", function() {
+    var c = control()
+    c.editor.setValue('2+2')
+    keypress('ctrl-alt-backspace')
+    c.editor.getValue().should.equal('')
+  })
+
+  it("should run and clear the editor when ctrl-shift-enter is pressed", function() {
+    var c = control()
+    c.editor.setValue('1 + 2')
+
+    c.logger.getValue().should.equal('')
+    keypress('ctrl-shift-enter')
+    c.logger.getValue().should.equal([
+        '1 + 2',
+        '/*',
+        '3',
+        '*/',
+        ''
+    ].join('\n'))
+
+    c.editor.getValue().should.equal('')
+  })
 })

@@ -5,6 +5,7 @@ describe("logger", function() {
       logResult = p.logResult,
       logError = p.logError
 
+
   var el
 
   beforeEach(function() {

@@ -13,15 +13,19 @@ permutation.control = function() {
     p.extend(window, g)
   })
 
-  keymage('ctrl-enter', function() {
+  p.keypress('ctrl-alt-enter', function() {
     run()
   })
 
-  keymage('ctrl-backspace', function() {
+  p.keypress('ctrl-alt-backspace', function() {
+    clear()
+  })
+
+  p.keypress('ctrl-shift-backspace', function() {
     clear()
   })
     
-  keymage('ctrl-shift-enter', function() {
+  p.keypress('ctrl-shift-enter', function() {
     run()
     clear()
   })
@@ -33,7 +37,7 @@ permutation.control = function() {
 
 
   function evaluate(input, succeed, fail) {
-    return p.evaluate(ns, input, succeed, fail)
+    return p.evaluate(input, succeed, fail)
   }
 
 
@@ -54,5 +58,11 @@ permutation.control = function() {
 
   function logError(error) {
     return p.logError(logger, error)
+  }
+
+
+  return {
+    editor: editor,
+    logger: logger
   }
 }
