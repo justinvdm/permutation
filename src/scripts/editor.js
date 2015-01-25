@@ -4,7 +4,10 @@
   }
 
 
-  function runEditor(editor, evaluate, succeed, fail) {
+  function runEditor(editor, evaluate, logInput, logResult, logError) {
+    var input = editor.getValue()
+    logInput(input)
+    evaluate(input, logResult, logError)
   }
 
 

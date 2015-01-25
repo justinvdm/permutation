@@ -6,7 +6,7 @@ describe("evaluate", function() {
   }
 
   it("should call the success function with the eval result", function(done) {
-    evaluate("2+2", succeed, fail)
+    evaluate("2 + 2", succeed, fail)
 
     function succeed(result) {
       result.should.equal(4)
