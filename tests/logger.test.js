@@ -2,7 +2,8 @@ describe("logger", function() {
   var makeTextbox = p.makeTextbox,
       makeLogger = p.makeLogger,
       logInput = p.logInput,
-      logResult = p.logResult
+      logResult = p.logResult,
+      logError = p.logError
 
   var el
 
@@ -83,6 +84,53 @@ describe("logger", function() {
           '',
           '/*',
           '23.3',
+          '*/',
+          ''
+      ].join('\n'))
+    })
+  })
+
+  describe("logError", function() {
+    it("should append the error to the logger", function() {
+      el.id = 'target'
+      var logger = makeLogger(makeTextbox('target'))
+
+      var e1 = new Error(':/')
+      var e2 = new Error('o_O')
+      var e3 = new Error('-_-')
+
+      logError(logger, e1)
+      logger.getValue().should.equal([
+          '/*',
+          e1.stack,
+          '*/',
+          ''
+      ].join('\n'))
+
+      logError(logger, e2)
+      logger.getValue().should.equal([
+          '/*',
+          e1.stack,
+          '*/',
+          '',
+          '/*',
+          e2.stack,
+          '*/',
+          ''
+      ].join('\n'))
+
+      logError(logger, e3)
+      logger.getValue().should.equal([
+          '/*',
+          e1.stack,
+          '*/',
+          '',
+          '/*',
+          e2.stack,
+          '*/',
+          '',
+          '/*',
+          e3.stack,
           '*/',
           ''
       ].join('\n'))

@@ -31,6 +31,7 @@
 
 
   function logError(logger, error) {
+    append(logger, commented(error.stack))
   }
 
 
