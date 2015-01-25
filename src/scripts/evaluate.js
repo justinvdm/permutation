@@ -1,5 +1,7 @@
 ;(function() {
-  function evaluate(ns, input, succeed, fail) {
+  function evaluate(input, succeed, fail) {
+    try { succeed(eval(input)) }
+    catch (e) { fail(e) }
   }
 
 
