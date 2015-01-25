@@ -7,11 +7,18 @@
 
 
   function append(logger, text) {
-    text = [logger.getValue(), text]
-      .join('\n')
-      .trim() + '\n'
+    var currentText = logger.getValue()
+    text = currentText.length
+      ? [currentText, text].join('\n')
+      : text
 
     logger.setValue(text)
+    logger.clearSelection()
+  }
+
+
+  function appendOutput(logger, output) {
+    append(logger, commented(output) + '\n')
   }
 
 
@@ -26,12 +33,12 @@
 
 
   function logResult(logger, result) {
-    append(logger, commented(result))
+    appendOutput(logger, result)
   }
 
 
   function logError(logger, error) {
-    append(logger, commented(error.stack))
+    appendOutput(logger, error.stack)
   }
 
 

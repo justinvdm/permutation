@@ -22,27 +22,19 @@ describe("logger", function() {
       var logger = makeLogger(makeTextbox('target'))
 
       logInput(logger, '1 + 2')
-      logger.getValue().should.equal([
-          '1 + 2',
-          ''
-      ].join('\n'))
+      logger.getValue().should.equal('1 + 2')
 
       logInput(logger, '3 + 4')
       logger.getValue().should.equal([
           '1 + 2',
-          '',
-          '3 + 4',
-          ''
+          '3 + 4'
       ].join('\n'))
 
       logInput(logger, '5 + 6')
       logger.getValue().should.equal([
           '1 + 2',
-          '',
           '3 + 4',
-          '',
-          '5 + 6',
-          ''
+          '5 + 6'
       ].join('\n'))
     })
   })
