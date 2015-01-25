@@ -32,4 +32,16 @@ describe("evaluate", function() {
       done()
     }
   })
+
+  it("should use a noop as the default success function", function() {
+    evaluate('3')
+  })
+
+  it("should throw errors if no failure function is given", function() {
+    function test() {
+      evaluate("throw new Error(':/')")
+    }
+
+    test.should.throw(':/')
+  })
 })
