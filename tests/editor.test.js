@@ -1,7 +1,8 @@
 describe("editor", function() {
   var makeTextbox = p.makeTextbox,
       makeEditor = p.makeEditor,
-      runEditor = p.runEditor
+      runEditor = p.runEditor,
+      clearEditor = p.clearEditor
 
   var el
 
@@ -57,6 +58,15 @@ describe("editor", function() {
         e.should.equal(error)
         done()
       }
+    })
+  })
+
+  describe("clearEditor", function() {
+    it("should clear the editor", function() {
+      var editor = makeEditor(makeTextbox(el))
+      editor.setValue('1 + 2')
+      clearEditor(editor)
+      editor.getValue().should.equal('')
     })
   })
 })

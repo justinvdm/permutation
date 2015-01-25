@@ -12,6 +12,7 @@
 
 
   function clearEditor(editor) {
+    editor.setValue('')
   }
 
 
