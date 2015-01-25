@@ -56,16 +56,6 @@ describe("control", function() {
     c.editor.getValue().should.equal('1 + 2')
   })
 
-  it("should run the intro code", function() {
-    p.intro = function() { return '1 + 2' }
-    var c = control()
-
-    c.logger.getValue().should.equal([
-        '1 + 2',
-        ''
-    ].join('\n'))
-  })
-
   it("should run the editor when ctrl-alt-enter is pressed", function() {
     var c = control()
     c.editor.setValue('1 + 2')

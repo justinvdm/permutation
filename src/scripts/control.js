@@ -26,11 +26,16 @@ permutation.control = function() {
 
   editor.setValue(p.intro())
   editor.clearSelection()
-  run()
+  runSilent()
 
 
   function run() {
     return p.runEditor(editor, evaluate, logInput, logResult, logError)
+  }
+
+
+  function runSilent() {
+    return p.runEditor(editor, evaluate)
   }
 
 
