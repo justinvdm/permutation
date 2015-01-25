@@ -2,7 +2,6 @@ permutation.control = function() {
   var p = permutation
 
 
-  var ns = {}
   var editor = p.makeEditor(p.makeTextbox('editor'))
   var logger = p.makeLogger(p.makeTextbox('logger'))
   
@@ -11,7 +10,7 @@ permutation.control = function() {
     museq,
     warped
   ].forEach(function(g) {
-    p.extend(ns, g)
+    p.extend(window, g)
   })
 
   keymage('ctrl-enter', function() {
