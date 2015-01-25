@@ -36,8 +36,9 @@ var scripts = {
 
 
 task('default', ['build', 'test'])
-task('build', ['clean', 'markup', 'styles', 'scripts'])
+task('build', ['markup', 'styles', 'scripts'])
 task('scripts', ['scripts:vendor', 'scripts:src'])
+task('markup', ['markup:clean', 'markup:build'])
 
 
 task('watch', function() {
@@ -46,11 +47,6 @@ task('watch', function() {
   watch('src/markup/**/*.html', ['markup'])
   watch('src/styles/**/*.less', ['styles'])
   watch('tests/**/*.test.js', ['test'])
-})
-
-
-task('clean', function(done) {
-  del('build/**/*', done)
 })
 
 
@@ -87,7 +83,12 @@ task('styles', function() {
 })
 
 
-task('markup', function() {
+task('markup:clean', function(done) {
+  del('build/**/*.html', done)
+})
+
+
+task('markup:build', function() {
   return vv('src/markup/**/*.html')
     (src)
     (pipe, dest('build/'))
