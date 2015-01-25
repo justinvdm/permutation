@@ -6,11 +6,27 @@
   }
 
 
+  function append(logger, text) {
+    text = [logger.getValue(), text]
+      .join('\n')
+      .trim() + '\n'
+
+    logger.setValue(text)
+  }
+
+
+  function commented(text) {
+    return ['/*', text, '*/'].join('\n')
+  }
+
+
   function logInput(logger, input) {
+    append(logger, input)
   }
 
 
   function logResult(logger, result) {
+    append(logger, commented(result))
   }
 
 

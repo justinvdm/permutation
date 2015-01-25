@@ -19,7 +19,8 @@ describe("editor", function() {
 
   describe("runEditor", function() {
     it("should log the editor's input", function(done) {
-      var editor = makeEditor(makeTextbox(el))
+      el.id = 'target'
+      var editor = makeEditor(makeTextbox('target'))
 
       editor.setValue('1 + 2')
       runEditor(editor, noop, logInput, noop, noop)
