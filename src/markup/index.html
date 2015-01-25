@@ -5,8 +5,12 @@
     <link rel="stylesheet" href="/static/permutation.min.css">
   </head>
   <body>
-    <div id="editor"></div>
-    <div id="logger"></div>
+    <header class="p-header">
+    </header>
+    <div class="p-vsplit">
+      <div class="p-editor p-vpane p-vpane-left" id="editor"></div>
+      <div class="p-logger p-vpane p-vpane-right" id="logger"></div>
+    </div>
     <script src="/static/permutation-vendor.min.js"></script>
     <script src="/static/permutation.min.js"></script>
     <script>permutation.control()</script>

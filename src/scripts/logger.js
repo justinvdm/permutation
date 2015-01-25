@@ -1,5 +1,7 @@
 ;(function() {
   function makeLogger(textbox) {
+    textbox.setReadOnly(true)
+    textbox.renderer.setShowGutter(false)
     return textbox
   }
 

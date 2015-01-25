@@ -77,7 +77,7 @@ task('scripts:vendor', function() {
 
 
 task('styles', function() {
-  return vv('src/styles/permutation.less')
+  return vv('src/styles/index.less')
     (src)
     (pipe, less())
     (pipe, cssmin())
