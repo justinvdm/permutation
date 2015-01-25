@@ -41,45 +41,22 @@ describe("logger", function() {
   })
 
   describe("logResult", function() {
-    it("should append the result to the logger", function() {
+    it("should append an empty line", function() {
       el.id = 'target'
       var logger = makeLogger(makeTextbox('target'))
 
       logResult(logger, 3)
-      logger.getValue().should.equal([
-          '/*',
-          '3',
-          '*/',
-          ''
-      ].join('\n'))
+      logger.getValue().should.be.empty
+
+      logger.setValue('3')
+      logResult(logger, 3)
+      logger.getValue().should.equal('3\n')
 
       logResult(logger, 23)
-      logger.getValue().should.equal([
-          '/*',
-          '3',
-          '*/',
-          '',
-          '/*',
-          '23',
-          '*/',
-          ''
-      ].join('\n'))
+      logger.getValue().should.equal('3\n\n')
 
       logResult(logger, 23.3)
-      logger.getValue().should.equal([
-          '/*',
-          '3',
-          '*/',
-          '',
-          '/*',
-          '23',
-          '*/',
-          '',
-          '/*',
-          '23.3',
-          '*/',
-          ''
-      ].join('\n'))
+      logger.getValue().should.equal('3\n\n\n')
     })
   })
 

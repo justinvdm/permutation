@@ -58,9 +58,6 @@ describe("control", function() {
     keypress('ctrl-alt-enter')
     c.logger.getValue().should.equal([
         '1 + 2',
-        '/*',
-        '3',
-        '*/',
         ''
     ].join('\n'))
 
@@ -89,9 +86,6 @@ describe("control", function() {
     keypress('ctrl-shift-enter')
     c.logger.getValue().should.equal([
         '1 + 2',
-        '/*',
-        '3',
-        '*/',
         ''
     ].join('\n'))
 

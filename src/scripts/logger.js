@@ -17,11 +17,6 @@
   }
 
 
-  function appendOutput(logger, output) {
-    append(logger, commented(output) + '\n')
-  }
-
-
   function commented(text) {
     return ['/*', text, '*/'].join('\n')
   }
@@ -33,12 +28,12 @@
 
 
   function logResult(logger, result) {
-    appendOutput(logger, result)
+    append(logger, '')
   }
 
 
   function logError(logger, error) {
-    appendOutput(logger, error.stack)
+    append(logger, commented(error.stack) + '\n')
   }
 
 
