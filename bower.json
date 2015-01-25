@@ -12,6 +12,7 @@
     "motif-js": "~0.1.1",
     "drainpipe": "~0.1.0",
     "museq": "~0.1.2",
-    "ace-builds": "~1.1.8"
+    "ace-builds": "~1.1.8",
+    "keymage": "~1.0.1"
   }
 }

@@ -1,1 +1,3 @@
-window.permutation = {}
+window.permutation = function() {
+  return {global: window}
+}()

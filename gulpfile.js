@@ -16,6 +16,7 @@ var vv = require('drainpipe'),
 
 var scripts = {
   vendor: [
+    'bower_components/keymage/keymage.js',
     'bower_components/ace-builds/src/ace.js',
     'bower_components/ace-builds/src/mode-javascript.js',
     'bower_components/ace-builds/src/theme-monokai.js',
@@ -29,16 +30,7 @@ var scripts = {
   ],
   src: [
     'src/scripts/index.js',
-    'src/scripts/edit.js',
-    'src/scripts/run.js',
-    'src/scripts/clear.js',
-    'src/scripts/inject.js',
-    'src/scripts/keys.js',
-    'src/scripts/showResult.js',
-    'src/scripts/showError.js',
-  ],
-  init: [
-    'src/scripts/init.js'
+    'src/scripts/**/*.js'
   ]
 }
 
@@ -64,7 +56,6 @@ task('clean', function(done) {
 
 task('scripts:src', function() {
   return vv(scripts.src)
-    (cat, scripts.init)
     (src)
     (pipe, concat('permutation.js'))
     (pipe, uglify())
@@ -108,7 +99,8 @@ task('test', function() {
   return vv(cat(
       scripts.vendor,
       scripts.src,
-      ['tests/**/*.test.js']))
+      ['tests/init.js',
+       'tests/**/*.test.js']))
     (src)
     (pipe, karma({
       action: 'run',
