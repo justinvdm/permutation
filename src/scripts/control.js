@@ -5,14 +5,6 @@ permutation.control = function() {
   var editor = p.makeEditor(p.makeTextbox('editor'))
   var logger = p.makeLogger(p.makeTextbox('logger'))
   
-  ;[sig,
-    wires,
-    museq,
-    warped
-  ].forEach(function(g) {
-    p.extend(window, g)
-  })
-
   p.keypress('ctrl-alt-enter', function() {
     run()
   })
@@ -29,6 +21,8 @@ permutation.control = function() {
     run()
     clear()
   })
+
+  p.init()
 
 
   function run() {

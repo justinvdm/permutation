@@ -1,15 +1,18 @@
 describe("control", function() {
   var control = p.control,
+      origInit = p.init,
       origKeypress = p.keypress
 
 
   var el
   var listeners = {}
 
+
   function keypress(keys, fn) {
     if (arguments.length < 2) return listeners[keys]()
     listeners[keys] = fn
   }
+
 
   function makeEl() {
     var el = document.createElement('div')
@@ -26,14 +29,25 @@ describe("control", function() {
     return el
   }
 
+
+  function noop() {}
+
+
   beforeEach(function() {
     p.keypress = keypress
+    p.init = noop
     el = makeEl()
   })
 
   afterEach(function() {
+    p.init = origInit
     p.keypress = origKeypress
     document.body.removeChild(el)
+  })
+
+  it("should initialise permutation", function(done) {
+    p.init = function() { done() }
+    control()
   })
 
   it("should run the editor when ctrl-alt-enter is pressed", function() {
