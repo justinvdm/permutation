@@ -17,11 +17,11 @@ permutation.init = function() {
   window.result = result
 
   window.samples = {
-    c: sampler('/static/c.wav'),
-    h: sampler('/static/h.wav'),
-    k: sampler('/static/k.wav'),
-    s: sampler('/static/s.wav'),
-    t: sampler('/static/t.wav')
+    c: sampler('static/c.wav'),
+    h: sampler('static/h.wav'),
+    k: sampler('static/k.wav'),
+    s: sampler('static/s.wav'),
+    t: sampler('static/t.wav')
   }
 
   window.s1 = sequencer()
