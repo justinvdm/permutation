@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "wires-js": "~0.1.0",
+    "wires-js": "~0.1.1",
     "warped": "~0.1.4",
     "sig-js": "~0.1.1",
     "motif-js": "~0.1.1",
