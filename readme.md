@@ -1,10 +1,10 @@
-# permutation
+# [permutation](http://justinvdm.github.io/permutation)
 
 ![Build Status](https://api.travis-ci.org/justinvdm/permutation.png)
 
 live pattern coding in the browser
 
-## what is it?
+## what is this?
 
 permutation is basically an online repl with a few libraries' functions made directly available, with the aim of providing a way of experimenting with live coding in the browser.
 
