@@ -1,6 +1,6 @@
 # permutation
 
-![Build Status](https://api.travis-ci.org/justinvdm/purmutation.png)
+![Build Status](https://api.travis-ci.org/justinvdm/permutation.png)
 
 live pattern coding in the browser
 
