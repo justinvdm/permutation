@@ -6,12 +6,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "wires-js": "~0.1.1",
+    "wires-js": "~0.1.3",
     "warped": "~0.1.4",
-    "sig-js": "~0.1.1",
+    "sig-js": "~0.4.1",
     "motif-js": "~0.1.1",
     "drainpipe": "~0.1.0",
-    "museq": "~0.1.2",
+    "museq": "~0.1.5",
     "ace-builds": "~1.1.8",
     "keymage": "~1.0.1"
   }
