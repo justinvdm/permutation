@@ -3,6 +3,7 @@
     var textbox = ace.edit(el)
     var session = textbox.getSession()
 
+    textbox.$blockScrolling = Infinity
     textbox.setShowPrintMargin(false)
     textbox.setTheme('ace/theme/monokai')
     session.setUseWorker(false)
