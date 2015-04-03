@@ -4,7 +4,6 @@ permutation.init = function() {
       run = warped.run,
       sampler = wires.sampler,
       val = sig.val,
-      ensure = sig.ensure,
       update = sig.update,
       flatten = sig.flatten,
       map = sig.map,
@@ -51,7 +50,6 @@ permutation.init = function() {
     var s = val()
 
     vv(s)
-      (ensure)
       (update)
       (seq)
       (flatten)
